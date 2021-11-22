@@ -23,8 +23,12 @@ app.use((req, res, next) => {
 // All API Routes ************************/
 
 const featureRoutes = require('./api/routes/features');
+const userRoutes = require('./api/routes/user');
+const voteRoutes = require('./api/routes/vote');
 
 app.use('/features', featureRoutes);
+app.use('/user', userRoutes);
+app.use('/vote', voteRoutes);
 
 
 

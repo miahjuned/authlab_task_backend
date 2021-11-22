@@ -5,7 +5,10 @@ const featureSchema = mongoose.Schema({
     date: {type: Date, default: Date.now},
     title: {type: String, required: true},
     description: {type: String, required: true},
-    vote: {type: Number, default: 2},
+    user: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "User"
+    },
     img: String
     
 }, {timestamps: true});

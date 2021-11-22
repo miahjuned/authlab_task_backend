@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
 const Features = require("../models/features");
-
+const User = require('../models/user')
 // Get all Features from database *********
 exports.get_All_features = async (req, res, next) => {
   try {
     Features.find()
+        .populate('user vote','name email vote comment')
         .exec()
         .then(docs => {
             const response = {
                 count: docs.length,
-                features: docs
+                docs
             }
             console.log('features', response)
             if (docs.length >= 0) {
@@ -32,21 +33,25 @@ exports.get_All_features = async (req, res, next) => {
 // Create feature ******************
 exports.create_feature = async (req, res, next) => {
     try{
+        User.findById(req.body.userId)
+            .then(user => {
 
-        const feature = new Features({
-            _id: mongoose.Types.ObjectId(),
-            title: req.body.title,
-            description: req.body.description,
-            // date: new Date(),
-            date: Date.now(),
-            vote: '5'
+           console.log("user", user)
+            const feature = new Features({
+                _id: mongoose.Types.ObjectId(),
+                title: req.body.title,
+                description: req.body.description,
+                // date: new Date(),
+                date: Date.now(),
+                user: req.body.userId
+            })
+            return feature.save()
         })
-        return feature.save()
         .then(result => {
             console.log('result',result)
             res.status(200).json({
                 message: 'successfully create a feature request',
-                feature: result
+                result
             })
         });
 
@@ -64,13 +69,14 @@ exports.get_single_feature = async (req, res, next) => {
     try{
         const id = req.params.featureId;
         Features.findById(id)
+            .populate('user','name email')
             .exec()
             .then(docs => {
                 console.log('single feature', docs);
                 if (docs)  {
                     res.status(200).json({
                         message: 'successfully find a feature',
-                        feature: docs
+                        docs
                     });
                 } else {
                     res.status(400).json({
@@ -115,7 +121,7 @@ exports.delete_feature = async (req, res, next) => {
             .then(result => {
                 res.status(200).json({
                     message: 'successfully delete a feature',
-                    feature: result,
+                    result,
                 });
             });
 
