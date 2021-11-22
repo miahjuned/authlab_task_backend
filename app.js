@@ -22,9 +22,9 @@ app.use((req, res, next) => {
 
 // All API Routes ************************/
 
-const feature_Routes = require('./api/routes/features');
+const featureRoutes = require('./api/routes/features');
 
-app.use('/features', feature_Routes);
+app.use('/features', featureRoutes);
 
 
 

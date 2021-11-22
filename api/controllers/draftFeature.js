@@ -16,9 +16,14 @@ exports.get_All_features = async (req, res, next) => {
                 res.status(200).json(response);
             } else{ 
                 res.status(404).json({
-                message: 'feature empty'
+                message: 'No feature found'
                 });
             };
+            // docs.length >= 0 ?
+            //     res.status(200).json(response)
+            // : res.status(404).json({
+            //     message: 'No feature found'
+            // })
         })
   } catch (err) {
       res.status(404).json({
@@ -34,11 +39,12 @@ exports.create_feature = async (req, res, next) => {
     try{
 
         const feature = new Features({
-            _id: mongoose.Types.ObjectId(),
+            _id: mongoose.Types.ObjectId,
             title: req.body.title,
             description: req.body.description,
             // date: new Date(),
-            date: Date.now(),
+            // date: Date.now(),
+            date: req.body.date,
             vote: '5'
         })
         return feature.save()
@@ -67,21 +73,18 @@ exports.get_single_feature = async (req, res, next) => {
             .exec()
             .then(docs => {
                 console.log('single feature', docs);
-                if (docs)  {
+                docs.length >= 0 ? 
                     res.status(200).json({
                         message: 'successfully find a feature',
                         feature: docs
-                    });
-                } else {
-                    res.status(400).json({
-                        message: 'No valid entry found for provided ID!'
-                    });
-                }
+                    })
+                : res.status(400).json({
+                    message: 'No valid entry found'
+                })
             })
     } catch(err) {
         res.status(404).json({
-            error: err,
-            message: 'Not valid id found'
+            error: err
         })
     }
 }
