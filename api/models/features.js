@@ -7,6 +7,7 @@ const featureSchema = mongoose.Schema({
     description: {type: String, required: true},
     vote: {type: Number, default: 2},
     img: String
-});
+    
+}, {timestamps: true});
 
 module.exports = mongoose.model('Features', featureSchema)
