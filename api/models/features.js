@@ -14,8 +14,9 @@ const featureSchema = mongoose.Schema({
         default: 'under-review',
         enum: ['under-review','planned', 'in-progress', 'complete','my-own']
     },
-    vote: Number,
+    vote: {type: Number, default:0},
     comment: String,
+    totalComment: {type: Number, default:0},
     img: String
     
 }, {timestamps: true});

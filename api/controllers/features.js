@@ -39,7 +39,6 @@ exports.create_feature = async (req, res, next) => {
            console.log("user", user)
             const feature = new Features({
                 _id: mongoose.Types.ObjectId(),
-                // date: new Date(),
                 date: Date.now(),
                 user: req.body.userId,
                 vote: req.body.voteId,
