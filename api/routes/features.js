@@ -14,11 +14,11 @@ router.delete('/:featureId', delete_feature)
 router.get('/', get_feature_by_Status);
 
 // vote sort
-router.get('/vote/hightest', sort_by_vote_High_To_Low);
-router.get('/vote/lowest', sort_by_vote_Low_To_High);
-router.get('/vote/recent', sort_by_date_recent_To_previous);
-router.get('/vote/older', sort_by_date_previous_to_recent);
-router.get('/vote/hightest-comment',sort_by_vote_high);
+router.get('/?vote/hightest', sort_by_vote_High_To_Low);
+router.get('/?vote/lowest', sort_by_vote_Low_To_High);
+router.get('/?vote/recent', sort_by_date_recent_To_previous);
+router.get('/?vote/older', sort_by_date_previous_to_recent);
+router.get('/?vote/hightest-comment',sort_by_vote_high);
 
 
 module.exports = router;
