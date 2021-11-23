@@ -217,7 +217,7 @@ exports.sort_by_vote_high = async (req, res, next) => {
     try {
         Features.find()
         // .limit(2)
-        .sort({comment: 1})
+        .sort({totalComment: 1})
         .exec((err, data) => {
             if (err) {
             res.status(500).json({
