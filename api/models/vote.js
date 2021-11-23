@@ -11,8 +11,8 @@ const voteSchema = mongoose.Schema({
         ref: "User",
         required: true
     },
-    vote:{ type:Number, required:true },
-    comment: { type: String, required: true},
+    vote:Number,
+    comment: String,
     date: { type: Date, default: Date.now() }
 
 }, { timestamps: true});

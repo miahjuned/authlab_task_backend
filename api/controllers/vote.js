@@ -114,7 +114,7 @@ exports.delete_vote = async (req, res, next) => {
 //*********************** vote query High To Low******************************* */  
 exports.sort_by_vote_High_To_Low = async (req, res, next) => {
     try {
-        Vote.find()
+        Features.find()
         // .limit(2)
         .sort({vote: -1})
         .exec((err, data) => {
@@ -139,7 +139,7 @@ exports.sort_by_vote_High_To_Low = async (req, res, next) => {
 //*********************** vote query Low To High ******************************* */  
 exports.sort_by_vote_Low_To_High = async (req, res, next) => {
     try {
-        Vote.find()
+        Features.find()
         // .limit(2)
         .sort({vote: 1})
         .exec((err, data) => {
@@ -166,7 +166,7 @@ exports.sort_by_vote_Low_To_High = async (req, res, next) => {
 //*********************** Date query recent_To_previous******************************* */  
 exports.sort_by_date_recent_To_previous = async (req, res, next) => {
     try {
-        Vote.find()
+        Features.find()
         // .limit(2)
         .sort({date: -1})
         .exec((err, data) => {
@@ -191,7 +191,7 @@ exports.sort_by_date_recent_To_previous = async (req, res, next) => {
 //*********************** Date query previous_to_recent ******************************* */  
 exports.sort_by_date_previous_to_recent = async (req, res, next) => {
     try {
-        Vote.find()
+        Features.find()
         // .limit(2)
         .sort({date: 1})
         .exec((err, data) => {
@@ -215,7 +215,7 @@ exports.sort_by_date_previous_to_recent = async (req, res, next) => {
 //*********************** comment query high_to_low ******************************* */  
 exports.sort_by_vote_high = async (req, res, next) => {
     try {
-        Vote.find()
+        Features.find()
         // .limit(2)
         .sort({comment: 1})
         .exec((err, data) => {
