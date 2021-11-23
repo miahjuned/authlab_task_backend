@@ -6,21 +6,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-// cors origin *******************/
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header(
-//       'Access-Control-Allow-Headers',
-//       'Origin, X-Requested-with, Content-Type, Accept, Authorization'  
-//     );
-//     if (req.method === 'OPTIONS') {
-//         res.header('Access-Control-Allow-Methods', 'PUT', 'POST', 'PATCH', 'DELETE', 'GET');
-//         return res.status(200).json({});
-//     }
-//     next();
-// })
-
-/******************* this is cors origin control of our api *******************/
+/******************* cors origin *******************/
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
