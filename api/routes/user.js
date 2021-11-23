@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { userRegister, userLogin, updated_user, all_user, single_user, user_deleted } = require('../controllers/user');
+const { userRegister, userLogin, updated_user,  all_user, single_user, user_deleted } = require('../controllers/user');
 
 // user create
 router.post('/register-user', 
@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
 })
 
 
-router.get('/', all_user)
+router.get('/all', all_user)
 router.get('/:userId', single_user)
 router.patch('/:userId', updated_user);
 router.delete('/:userId', user_deleted);

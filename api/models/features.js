@@ -8,6 +8,15 @@ const featureSchema = mongoose.Schema({
     user: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: "User"
+    },   
+    vote: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Vote"
+    },   
+    status: {
+        type: String,
+        default: 'under-review',
+        enum: ['under-review','planned', 'in-progress', 'complete','my-own']
     },
     img: String
     

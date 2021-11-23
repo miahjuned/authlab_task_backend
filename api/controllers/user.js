@@ -13,7 +13,7 @@ const validateEmail = async email => {
 
 
 
-// create an account
+  //************************* create an account  ***************************************
 exports.userRegister = async (userData, role, res) => {
     try{
 
@@ -57,7 +57,7 @@ exports.userRegister = async (userData, role, res) => {
 
 
 
-// Login
+  //************************* Login***************************************
 
 exports.userLogin = async (userLoginInfo, res) => {
 
@@ -220,5 +220,3 @@ exports.single_user = (req, res, next) => {
             });
         });
   };
-  
-  
