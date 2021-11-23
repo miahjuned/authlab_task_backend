@@ -96,6 +96,7 @@ console.log('user', user)
             { expiresIn: '3 days'}
         );
         let result = {
+            id: user._id,
             role: user.role,
             email: user.email,
             name: user.name,
