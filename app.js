@@ -35,7 +35,7 @@ app.use('/vote', voteRoutes);
 
 //  Error handling ******************/
 app.use((req, res, next) => {
-  const error = new Error('Site Working, error not found');
+  const error = new Error('Server site Working! but you are coming wrong route!');
   error.status = 404;
   next(error);
 });
