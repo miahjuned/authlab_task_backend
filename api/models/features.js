@@ -18,6 +18,8 @@ const featureSchema = mongoose.Schema({
     comment: String,
     totalComment: {type: Number, default:0},
     reply: String,
+    replyUser: String,
+    replyUserImg: String,
     img: String
     
 }, {timestamps: true});
