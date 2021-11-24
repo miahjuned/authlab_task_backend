@@ -132,7 +132,14 @@ exports.single_user = (req, res, next) => {
             if (doc) {
                 res.status(201).json({
                     message: "successfully get all single user",
-                    doc
+                    doc: doc.map( doc => {
+                        return {
+                            _id: doc._id,
+                            email: doc.email,
+                            name: doc.name,
+                            role: doc.role,
+                        };
+                    })
                 });
             } else {
                 res.status(400).json({
@@ -157,14 +164,21 @@ exports.single_user = (req, res, next) => {
   exports.all_user = (req, res, next) => {
     User.find()
         .exec()
-        .then( result => {
+        .then( user => {
   
-            console.log('all user', result);
-            if (result.length >= 1) {
+            console.log('all user', user);
+            if (user.length >= 1) {
                 res.status(201).json({
                     count: result.length,
                     message: "successfully get all user",
-                    result
+                    result: user.map( doc => {
+                        return {
+                            _id: doc._id,
+                            email: doc.email,
+                            name: doc.name,
+                            role: doc.role,
+                        };
+                    })
                 });
             } else {
                 res.status(400).json({
@@ -187,13 +201,13 @@ exports.single_user = (req, res, next) => {
   
   exports.updated_user = async (req, res, next) => {
     try {
-        const products = await User.findById(req.params.userId);
+        const user = await User.findById(req.params.userId);
         
-        Object.assign(products, req.body);
-        products.save();
+        Object.assign(user, req.body);
+        user.save();
   
         res.status(200).json({
-            message: 'successfully updated a user info.',
+            message: 'successfully updated.',
         });
   
     } catch {
