@@ -17,6 +17,7 @@ const featureSchema = mongoose.Schema({
     vote: {type: Number, default:0},
     comment: String,
     totalComment: {type: Number, default:0},
+    reply: String,
     img: String
     
 }, {timestamps: true});
