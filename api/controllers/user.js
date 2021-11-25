@@ -132,14 +132,10 @@ exports.single_user = (req, res, next) => {
             if (doc) {
                 res.status(201).json({
                     message: "successfully get all single user",
-                    doc: doc.map( doc => {
-                        return {
-                            _id: doc._id,
-                            email: doc.email,
-                            name: doc.name,
-                            role: doc.role,
-                        };
-                    })
+                    _id: doc._id,
+                    email: doc.email,
+                    name: doc.name,
+                    role: doc.role,
                 });
             } else {
                 res.status(400).json({
@@ -169,7 +165,7 @@ exports.single_user = (req, res, next) => {
             console.log('all user', user);
             if (user.length >= 1) {
                 res.status(201).json({
-                    count: result.length,
+                    count: user.length,
                     message: "successfully get all user",
                     result: user.map( doc => {
                         return {
