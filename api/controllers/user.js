@@ -136,6 +136,8 @@ exports.single_user = (req, res, next) => {
                     email: doc.email,
                     name: doc.name,
                     role: doc.role,
+                    img: doc.img,
+                    createdAt: doc.createdAt
                 });
             } else {
                 res.status(400).json({
@@ -172,7 +174,9 @@ exports.single_user = (req, res, next) => {
                             _id: doc._id,
                             email: doc.email,
                             name: doc.name,
-                            role: doc.role,
+                            role: doc.role,  
+                            img: doc.img,
+                            createdAt: doc.createdAt
                         };
                     })
                 });
