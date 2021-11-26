@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Features = require("../models/features");
 const User = require('../models/user')
+
 // Get all Features from database *********
 exports.get_All_features = async (req, res, next) => {
   try {
@@ -13,7 +14,7 @@ exports.get_All_features = async (req, res, next) => {
                 docs
             }
             console.log('features', response)
-            if (docs.length >= 0) {
+            if (docs.length >= 1) {
                 res.status(200).json(response);
             } else{ 
                 res.status(404).json({
@@ -79,7 +80,7 @@ exports.get_single_feature = async (req, res, next) => {
                     });
                 } else {
                     res.status(400).json({
-                        message: 'No valid entry found for provided ID!'
+                        message: 'No valid entry found by provided ID!'
                     });
                 }
             })

@@ -26,9 +26,11 @@ app.use((req, res, next) => {
 
 const featureRoutes = require('./api/routes/features');
 const userRoutes = require('./api/routes/user');
+const replyRouts = require('./api/routes/reply')
 
 app.use('/features', featureRoutes);
 app.use('/user', userRoutes);
+app.use('/reply', replyRouts);
 
 
 
