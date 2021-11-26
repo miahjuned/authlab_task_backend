@@ -12,7 +12,8 @@ const replySchema = mongoose.Schema({
     replyFeatureId: {
         type: mongoose.Schema.Types.ObjectId,
         ref:"Features"
-    }
+    },
+    totalComment: Number
 }, { timestamps: true});
 
 module.exports = mongoose.model('Reply', replySchema);

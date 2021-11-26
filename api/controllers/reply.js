@@ -42,6 +42,7 @@ exports.get_reply = async (req, res, next) => {
     try {
         Reply.find()
             .populate('replyUserId replyFeatureId', 'name email img _id title')
+            .sort({date: -1})
             .exec()
             .then(reply => {
                 const response = {
@@ -66,26 +67,6 @@ exports.get_reply = async (req, res, next) => {
 };
 
 
-// single reply ......................
-exports.single_reply = async (req, res, next) => {
-    try {
-        const id = req.params.replyId;
-        Reply.findById(id)
-            .populate('replyUserId replyFeatureId', 'name email img _id title')
-            .exec()
-            .then(reply => {
-                res.status(200).json({
-                    message: 'successfully find single reply',
-                    reply
-                })
-            })
-    } catch(err) {
-        res.status(400).json({
-            message: 'No valid entry found by provided ID!'
-        });
-    }
-}
-
 
 // single reply ......................
 exports.get_single_reply = async (req, res, next) => {
@@ -93,6 +74,7 @@ exports.get_single_reply = async (req, res, next) => {
         const featureId = req.params.featureId;
         Reply.find({featureId})
             .populate('replyUserId replyFeatureId', 'name email img _id title')
+            .sort({date: -1})
             .exec()
             .then(reply => {
                 res.status(200).json({
