@@ -8,8 +8,7 @@ const Reply = require('../models/reply');
 exports.create_reply = async (req, res, next) => {
     try {
         Features.findById(req.body.featureId)
-            .then(features => {
-                console.log(features)
+            .then(async features => {
                 const reply = new Reply({
                     _id: mongoose.Types.ObjectId(),
                     replyUserId: req.body.replyUserId,
@@ -17,15 +16,17 @@ exports.create_reply = async (req, res, next) => {
                     reply: req.body.reply ,
                     ...req.body
                 })
-                return reply.save()
-            })
-            .then(result => {
-                console.log(result);
+                const replyDone = await reply.save();
+                await Features.updateOne(
+                    { _id: features._id },
+                    { totalComment: replyDone.totalComment}
+                );
+            
                 res.status(200).json({
-                    message: 'post reply success',
-                    result
-                })
+                  message: "post reply success",
+                });
             })
+
     } catch(err) {
         res.status(404).json({
             error: err,

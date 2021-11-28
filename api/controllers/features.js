@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 const Features = require("../models/features");
 const User = require('../models/user')
+const Reply = require('../models/reply')
 
 // Get all Features from database *********
 exports.get_All_features = async (req, res, next) => {
   try {
     Features.find()
-        .populate('user vote','name email vote comment reply replyUser img totalComment replyUserImg')
+        .populate('user','name email img')
         .exec()
         .then(docs => {
             const response = {
@@ -69,7 +70,7 @@ exports.get_single_feature = async (req, res, next) => {
     try{
         const id = req.params.featureId;
         Features.findById(id)
-            .populate('user vote','name email vote comment reply replyUser img totalComment replyUserImg')
+            .populate('user','name email img')
             .exec()
             .then(docs => {
                 console.log('single feature', docs);
