@@ -94,12 +94,22 @@ exports.get_single_reply = async (req, res, next) => {
   //************************* reply delete  ***************************************
   
   exports.Reply_deleted = (req, res, next) => {
-    Reply.remove({ _id: req.params.replyId })
+      const id = req.params.replyId;
+    Reply.deleteOne({featureId: id })
         .exec()
-        .then( result => {
+        .then(result => {
+            
+            if (result) {
+                Features.findById(id).then( async docs => {
+                    await Features.updateOne(
+                        { _id: id },
+                        { totalComment: docs.totalComment - 1}
+                    );
+                })
+               
+            };
             res.status(200).json({
                 message: "Reply deleted",
-                user: result
             });
         })
         .catch(err => {
