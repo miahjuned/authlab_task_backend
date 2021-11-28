@@ -89,3 +89,23 @@ exports.get_single_reply = async (req, res, next) => {
         });
     }
 }
+
+
+  //************************* reply delete  ***************************************
+  
+  exports.Reply_deleted = (req, res, next) => {
+    Reply.remove({ _id: req.params.replyId })
+        .exec()
+        .then( result => {
+            res.status(200).json({
+                message: "Reply deleted",
+                user: result
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+  };
